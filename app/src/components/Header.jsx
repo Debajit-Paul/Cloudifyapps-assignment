@@ -7,8 +7,25 @@ const Header = () => {
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
-    // Play the music on component mount
-    audioRef.current.play();
+    const audioElement = audioRef.current;
+
+    const playAudio = () => {
+      audioElement.play().catch(() => {
+        document.addEventListener("click", handleUserInteraction, {
+          once: true,
+        });
+      });
+    };
+
+    const handleUserInteraction = () => {
+      audioElement.play();
+    };
+
+    playAudio();
+
+    return () => {
+      document.removeEventListener("click", handleUserInteraction);
+    };
   }, []);
 
   const toggleMute = () => {

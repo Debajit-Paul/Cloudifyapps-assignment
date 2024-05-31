@@ -13,10 +13,8 @@ import data from "../data.json";
 
 const Quiz = () => {
   const navigate = useNavigate();
-
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  console.log(data);
   return (
     <>
       <img
@@ -36,6 +34,8 @@ const Quiz = () => {
             "--swiper-navigation-color": "#000",
             "--swiper-pagination-color": "#000",
           }}
+          spaceBetween={30}
+          slidesPerView={1}
           navigation={{
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
@@ -70,7 +70,10 @@ const Quiz = () => {
           transition={{ duration: 0.75, ease: "easeOut" }}
           exit={{ opacity: 0 }}
         >
-          <div className="absolute top-[88%] sm:top-[50%] left-[5%] md:left-[16%] swiper-button-prev w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center">
+          <div
+            className="absolute top-[88%] sm:top-[50%] left-[5%] md:left-[16%] swiper-button-prev w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center z-10
+          "
+          >
             <img
               src={
                 currentSlide === 0 ? `./white_arrow.png` : `./black_arrow.png`
@@ -80,7 +83,7 @@ const Quiz = () => {
             />
           </div>
           <div
-            className={`absolute top-[88%] sm:top-[50%] right-[5%] md:right-[16%] swiper-button-next w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center`}
+            className={`absolute top-[88%] sm:top-[50%] right-[5%] md:right-[16%] swiper-button-next w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center z-10`}
             onClick={() => {
               if (currentSlide + 1 === data.length) {
                 navigate("/success");
@@ -96,11 +99,9 @@ const Quiz = () => {
           <div
             className={`flex items-center absolute top-[14%] sm:top-[10%] md:top-[14%] left-[50%] [transform:translate(-50%,0%)] ${
               currentSlide === 9 ? `gap-4` : `gap-2`
-            } ease-in-out duration-500`}
+            } ease-in-out duration-500 z-10`}
           >
-            <p
-              className={`text-white text-[17px] font-cop z-10 tracking-[3px]`}
-            >
+            <p className={`text-white text-[17px] font-cop  tracking-[3px]`}>
               <span className="font-[600]">{currentSlide + 1}</span>
               {`/${data.length}`}
             </p>
