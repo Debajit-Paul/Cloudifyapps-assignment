@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { toggleAlert } from "../features/alert/alertSlice";
 
 const QuizCard = ({ question, answer, image }) => {
+  const dispatch = useDispatch();
+  // const { alert, setAlert } = useContext(context);
   const [isFlipped, setIsFlipped] = useState(false);
   const defaultOptions = {
     reverse: false,
@@ -29,7 +32,8 @@ const QuizCard = ({ question, answer, image }) => {
         }`}
         onClick={() => {
           setIsFlipped(!isFlipped);
-          console.log(isFlipped);
+          dispatch(toggleAlert());
+          // console.log(isFlipped);
         }}
       >
         {/* Front */}

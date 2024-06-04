@@ -5,8 +5,18 @@ import Success from "./pages/Success";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { AnimatePresence } from "framer-motion";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const isAlert = useSelector((state) => state.alert.isAlert);
+
+  useEffect(() => {
+    if (isAlert) {
+      alert("hi");
+    }
+  }, [isAlert]);
+
   return (
     <div className="w-[100%] h-screen overflow-hidden relative select-none">
       <Header />
@@ -17,7 +27,6 @@ function App() {
           <Route path="/success" element={<Success />} />
         </Routes>
       </AnimatePresence>
-
       <Footer />
     </div>
   );

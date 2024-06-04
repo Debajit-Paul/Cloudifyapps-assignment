@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Pagination } from "swiper/modules";
 import { motion } from "framer-motion";
-
+import { useDispatch } from "react-redux";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -10,10 +10,12 @@ import "swiper/css/pagination";
 import { useNavigate } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
 import data from "../data.json";
+import { resetAlert } from "../features/alert/alertSlice";
 
 const Quiz = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -73,6 +75,7 @@ const Quiz = () => {
           <div
             className="absolute top-[88%] sm:top-[50%] left-[5%] md:left-[16%] swiper-button-prev w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center z-10
           "
+            onClick={() => dispatch(resetAlert(false))}
           >
             <img
               src={
@@ -80,11 +83,13 @@ const Quiz = () => {
               }
               alt=""
               className="w-[0.85rem] h-[1.1rem] rotate-180 group-hover:scale-90 duration-500 ease-in-out mr-[2px] sm:mr-[5px]"
+              onClick={() => dispatch(resetAlert(false))}
             />
           </div>
           <div
             className={`absolute top-[88%] sm:top-[50%] right-[5%] md:right-[16%] swiper-button-next w-[48px] sm:w-[60px] h-[48px] sm:h-[60px] bg-[#FDF416] bg-cover rounded-full group hover:scale-110 duration-500 ease-in-out flex items-center justify-center z-10`}
             onClick={() => {
+              dispatch(resetAlert(false));
               if (currentSlide + 1 === data.length) {
                 navigate("/success");
               }
@@ -94,6 +99,7 @@ const Quiz = () => {
               src="./black_arrow.png"
               alt=""
               className="w-[0.85rem] h-[1.1rem] group-hover:scale-90 duration-500 ease-in-out"
+              onClick={() => dispatch(resetAlert(false))}
             />
           </div>
           <div

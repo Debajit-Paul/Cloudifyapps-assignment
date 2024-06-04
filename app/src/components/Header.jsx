@@ -37,7 +37,16 @@ const Header = () => {
     <div className="w-screen p-5 fixed top-0 flex items-center justify-between z-20">
       <audio ref={audioRef} src="./audio-site.mp3" loop allow="autoplay" />
       <Link to={"/"}>
-        <img src="./logo.png" alt="" className="w-[150px] sm:w-[190px]" />
+        <div className="flex items-center gap-[10px]">
+          <div className="bg-white rounded-full w-[42px] h-[42px] flex items-center justify-center">
+            <img src="./reallogo.png" alt="" className=" object-contain" />
+          </div>
+
+          <div className="flex flex-col ">
+            <p className="text-white text-[14px]">Cloudifyapp Pvy. Ltd</p>
+            <p className="text-white text-[10px]">By John Doe</p>
+          </div>
+        </div>
       </Link>
       <div
         className="flex items-center justify-center w-[40px] sm:w-[60px] h-[40px] sm:h-[60px] rounded-lg hover:bg-slate-100/15 cursor-pointer"
